@@ -32,7 +32,7 @@ define(['algebra/lexer'], function(lexer) {
     /* setup the lexer */
 
     lexer.parse('');
-    lexer = lexer.yy.lexer;
+    lexer = lexer.lexer;
 
     var symbol = '';
     
