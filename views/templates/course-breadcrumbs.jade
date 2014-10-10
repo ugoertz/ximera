@@ -1,8 +1,8 @@
 ul.breadcrumb
   li
-    a(href="/") Home
+    a(href="/") Startseite
   li
-    a(href="/course/") Courses
+    a(href="/course/") Kurse
   li
     a(href="/course/{{course.slug}}/") {{course.name}}
   li(ng-repeat="activity in ancestors", ng-class='{active: $last}')

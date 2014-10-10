@@ -13,33 +13,33 @@ block content
               .col-sm-10
                 input.form-control(type="email", id="email", placeholder="Email", ng-model="user.email")
             div.form-group
-              label.control-label.col-sm-2(for="homepage") Homepage
+              label.control-label.col-sm-2(for="homepage") Webseite
               .col-sm-10
                 input.form-control(type="url", id="homepage", placeholder="http://", ng-model="user.website")
             div.form-group
-              label.control-label.col-sm-2(for="location") Location
+              label.control-label.col-sm-2(for="location") Ort
               .col-sm-10
                 input.form-control(id="location", placeholder="Some City, Some Province, Some Country", ng-model="user.location")
             div.form-group(ng-class="{'has-error': datepickerForm.date.$invalid}")
-              label.control-label.col-sm-2(for="birthday") Birthday
+              label.control-label.col-sm-2(for="birthday") Geburtstag
               .col-sm-10
                 input.form-control(id="birthday", bs-datepicker="", type="text" placeholder="", ng-model="user.birthday")
             div.form-group
-              label.control-label.col-sm-2(for="biography") Biography
+              label.control-label.col-sm-2(for="biography") Weitere Angaben
               .col-sm-10
                 textarea.form-control(id="biography", rows="5", ng-model="user.biography")
             div.form-group
               .col-sm-offset-2.col-sm-10
                 div.btn-toolbar(role="toolbar")
                   div.btn-group
-                    button.btn.btn-primary(type="submit",ng-click="save()") Save
+                    button.btn.btn-primary(type="submit",ng-click="save()") Speichern
                   div.btn-group
-                    button.btn.btn-danger(ng-click="cancel()") Cancel
+                    button.btn.btn-danger(ng-click="cancel()") Abbrechen
             
         div(ng-switch-default)
           .btn-group.pull-right
             a.btn.btn-sm.btn-primary(role="button", ng-click="edit()")
-              | <i class="fa fa-pencil"></i> Edit
+              | <i class="fa fa-pencil"></i> Editieren
           a.pull-right(href="http://www.gravatar.com/{{user.gravatar}}")
             img(class="profile-picture",src="https://secure.gravatar.com/avatar/{{user.gravatar}}.jpg?d=retro&s=160")
           .row
@@ -50,11 +50,11 @@ block content
               dt Email
               dd 
                  a(href="mailto:{{user.email}}") {{user.email}}
-              dt Homepage
+              dt Webseite
               dd 
                  a(href="{{user.website}}") {{user.website}}
-              dt Location
+              dt Ort
               dd {{user.location}}
-              dt Birthday
+              dt Geburtstag
               dd {{user.birthday}}
             p {{user.biography}}

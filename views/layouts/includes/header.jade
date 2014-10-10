@@ -8,7 +8,7 @@ nav#scroller.navbar.navbar-default.navbar-fixed-top.affix-top(role='navigation')
         span.icon-bar
         span.icon-bar
       a.navbar-brand(href="/")
-        | <span style="font-weight: 200;">XIMERA.</span><span style="font-weight: 700;">OSU</span><span style="font-weight: 200;">.EDU</span>
+        | <span style="font-weight: 200;">XIMERA-Seiten von Ulrich Görtz</span>
     .navbar-collapse.collapse
       ul.nav.navbar-nav.navbar-right(ng-controller="ScoreController")
          li
@@ -29,11 +29,9 @@ nav#scroller.navbar.navbar-default.navbar-fixed-top.affix-top(role='navigation')
                b.caret
              ul(id="login-menu").dropdown-menu
                //li
-               //  a(href="/users/profile") <i class='fa fa-cogs'></i> Profile
+               //  a(href="/users/profile") <i class='fa fa-cogs'></i> Profil
                li
-                 a(href="/logout") <i class='fa fa-sign-out'></i> Logout
+                 a(href="/logout") <i class='fa fa-sign-out'></i> Abmelden
          else
            li
-             a(href="/auth/google") <i class='fa fa-sign-in'></i> Sign In with Google
-           li
-             a(href="/auth/coursera") <i class='fa fa-sign-in'></i> Sign In with Coursera
+             a(href="/auth/google") <i class='fa fa-sign-in'></i> Anmelden mit Google-Nutzerkennung

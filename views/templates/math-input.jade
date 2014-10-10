@@ -3,9 +3,9 @@ span
     span.input-group
       input.form-control(type='text',ng-model='db.answer',ng-disabled='db.success')
       span.input-group-btn(ng-switch="",on='db.message')
-        button.btn.btn-success(ng-click='attemptAnswer()',ng-switch-when="correct",data-toggle="tooltip",data-placement="top",title="Correct answer!")
+        button.btn.btn-success(ng-click='attemptAnswer()',ng-switch-when="correct",data-toggle="tooltip",data-placement="top",title="Korrekte Antwort!")
           i.fa.fa-check
-        button.btn.btn-danger(ng-click='attemptAnswer()',ng-switch-when="incorrect",data-toggle="tooltip",data-placement="top",title="Incorrect.  Try again!")
+        button.btn.btn-danger(ng-click='attemptAnswer()',ng-switch-when="incorrect",data-toggle="tooltip",data-placement="top",title="Falsch. Versuche es noch einmal!")
           i.fa.fa-times
-        button.btn.btn-primary(ng-click='attemptAnswer()',ng-switch-default,data-toggle="tooltip",data-placement="top",title="Click to check your answer.")
+        button.btn.btn-primary(ng-click='attemptAnswer()',ng-switch-default,data-toggle="tooltip",data-placement="top",title="Klicke, um die Antwort zu überprüfen.")
           i.fa.fa-question

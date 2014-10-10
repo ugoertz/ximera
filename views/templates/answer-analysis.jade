@@ -1,16 +1,16 @@
 div(ng-show="db.shown")
   p
-    | Percent of users correctly answering eventually: {{db.answerAnalytics.percentUsersCorrect}}%
+    | Anteil der Benutzer, die letztendlich korrekt antworten: {{db.answerAnalytics.percentUsersCorrect}}%
   p
-    | Average number of responses before a correct answer: {{db.answerAnalytics.averageResponsesBeforeCorrect}}
+    | Durchschnittliche Anzahl von Versuchen bis zur korrekten Antwort: {{db.answerAnalytics.averageResponsesBeforeCorrect}}
   p
-    | Percent of viewing users who attempt this part: {{db.answerAnalytics.percentAttempting}}%
+    | Anteil der Benutzer, die versuchen, diese Aufgabe zu lösen: {{db.answerAnalytics.percentAttempting}}%
   p
-    | Total attempts: {{db.answerAnalytics.totalAttempts}}
+    | Anzahl aller Versuche: {{db.answerAnalytics.totalAttempts}}
   p
-    | Total correct answers: {{db.answerAnalytics.totalCorrect}}
+    | Anzahl aller korrekten Antworten: {{db.answerAnalytics.totalCorrect}}
   p
-    | Most common wrong answers:
+    | Häufigste falsche Antworten:
     ul
       li(ng-repeat="answer in db.answerAnalytics.sortedWrongAnswers")
         | {{answer[1]}} attempts: {{answer[0]}}

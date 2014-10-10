@@ -4,7 +4,7 @@ include ../links.jade
 
 mixin viewSource()
   a.pull-right.btn.btn-info.btn-sm(role="button",href="source/")
-    | <i class="fa fa-code"></i> View Source
+    | <i class="fa fa-code"></i> Quelltext anschauen
 
 block title
   | #{activity.title}
@@ -15,10 +15,10 @@ block activity
           if !activity.recent
             .btn-group
               a.pull-right.btn.btn-sm.btn-primary(role="button", href="update/")
-                | <i class="fa fa-level-up"></i> Update Activity
+                | <i class="fa fa-level-up"></i> Aktivität aktualisieren
           .btn-group
-            button.pull-right.btn.btn-sm.btn-danger(type="button",ng-controller="ResetButtonCtrl", ng-confirm-click="Are you sure you want to erase your work?", ng-click="resetPage()")
-              | <i class="fa fa-eraser"></i> Erase Work
+            button.pull-right.btn.btn-sm.btn-danger(type="button",ng-controller="ResetButtonCtrl", ng-confirm-click="Sind Sie sicher, dass Sie die Aktivität aktualisieren möchten?", ng-click="resetPage()")
+              | <i class="fa fa-eraser"></i> Antworten löschen
           .btn-group
             mixin viewSource()
          h1 #{activity.title}
@@ -37,10 +37,10 @@ block content
             ul.pager
              li.previous(class=(previousActivity ? undefined : "disabled"))
                +courseActivityLink(course,previousActivity)
-                 | &larr; Previous Activity
+                 | &larr; Vorherige Aktivität
              li.next(class=(nextActivity ? undefined : "disabled"),completion-blink="")
                +courseActivityLink(course,nextActivity)
-                 | Next Activity &rarr;
+                 | Nächste Aktivität &rarr;
             //p {{db}}
             //p {{currentActivity}}
             div(forum="#{activity.slug}")

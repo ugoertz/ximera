@@ -18,18 +18,17 @@ block content
      mixin breadcrumbs(['/course/',"/course/#{course.slug}/"],['Courses',course.name])
      .page-header
        h1 #{course.name}
-     p #{course.description}  You can 
-       a(href="/course/#{course.slug}/activity/#{course.normalizeSlug(course.activityTree[0].slug)}/") get started by clicking here.
-       |  The activities include quite a bit of javascript, so you may have to wait a little while for the page to finish rendering.
+     p #{course.description}  Du kannst beginnen, 
+       a(href="/course/#{course.slug}/activity/#{course.normalizeSlug(course.activityTree[0].slug)}/") indem Du hier klickst.
+       |  (Die Webseiten enthalten eine Menge JavaScript-Code, so dass es manchmal etwas länger dauert, bis alles dargestellt wird.)
 
      if false
-       p Please <a href="mailto:fowler@math.osu.edu">let the course author know</a> if you are having trouble accessing the content.
+       p Bei Problemen schicke bitte eine Email an ulrich.goertz@uni-due.de
 
      if repo.feedback
-       p You can <a href="https://github.com/#{repo.gitIdentifier}">see the source code for the course at GitHub</a>.
-       p Some of the activities have not compiled correctly:
+       p Einige Aktivitäten konnten nicht korrekt kompiliert werden:
        pre #{repo.feedback}
 
-     //h2 Activities
+     //h2 Aktivitäten
      //.tree
      //mixin displayTree(course, course.activityTree)

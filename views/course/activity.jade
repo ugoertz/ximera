@@ -4,7 +4,7 @@ include ../links.jade
 
 mixin viewSource()
   a.pull-right.btn.btn-info.btn-sm(role="button",href="source/")
-    | <i class="fa fa-code"></i> View Source
+    | <i class="fa fa-code"></i> Quelltext anschauen
 
 block title
   | #{activity.title}
@@ -14,30 +14,27 @@ block activity
         div.pull-right.btn-toolbar(role="toolbar")
           if !activity.recent
             .btn-group
-              a.pull-right.btn.btn-sm.btn-primary(role="button", ng-confirm-click="Updating to the most recent version of this activity will erase your work. Are you sure you want to update to the new version?", href="update/")
-                | <i class="fa fa-level-up"></i> Update Activity
+              a.pull-right.btn.btn-sm.btn-primary(role="button", ng-confirm-click="Bei der Aktualisierung auf die aktuelle Version dieser Aktivität werden Deine Antworten gelöscht. Bist Du sicher?", href="update/")
+                | <i class="fa fa-level-up"></i> Aktivität aktualisieren
           .btn-group
             button.btn.btn-warning.btn-sm.dropdown-toggle(type="button",data-toggle="dropdown")
-              | <i class="fa fa-bug"></i> Report Bug <span class="caret"></span>
+              | <i class="fa fa-bug"></i> Fehler melden <span class="caret"></span>
             ul.dropdown-menu
               li
-                a(href="https://github.com/#{activity.slug.split(':')[0]}/issues/new") Report error in content
+                a(href="https://github.com/#{activity.slug.split(':')[0]}/issues/new") Inhaltlichen Fehler melden
               li
-                a(href="https://github.com/kisonecat/ximera/issues/new") Report error with website
+                a(href="https://github.com/ugoertz/ximera/issues/new") Technisches Problem mit der Webseite melden
           .btn-group
-            button.pull-right.btn.btn-sm.btn-danger(type="button",ng-controller="ResetButtonCtrl", ng-confirm-click="Are you sure you want to erase your work?", ng-click="resetPage()")
-              | <i class="fa fa-eraser"></i> Erase Work
+            button.pull-right.btn.btn-sm.btn-danger(type="button",ng-controller="ResetButtonCtrl", ng-confirm-click="Bist Du sicher, dass Deine Antworten gelöscht werden sollen?", ng-click="resetPage()")
+              | <i class="fa fa-eraser"></i> Antworten löschen
           //.btn-group
           //  mixin viewSource()
           .btn-group
-            a.pull-right.btn.btn-default.btn-sm(role="button",href="https://github.com/#{activity.slug.split(':')[0]}/edit/master/#{activity.relativePath}")
-              | <i class="fa fa-pencil"></i> Edit Source
-          .btn-group
             button.pull-right.btn.btn-sm.btn-primary(type="button", ng-controller="SaveWorkCtrl", ng-click="updateState()")
               span(ng-if="saved")
-                | <i class="fa fa-save"></i> Work Saved!
+                | <i class="fa fa-save"></i> Antworten gespeichert!
               span(ng-if="!saved")
-                | <i class="fa fa-save"></i> Save Work
+                | <i class="fa fa-save"></i> Antworten speichern
          h1 #{activity.title}
       | !{activityHtml}
       //p #{activityHtml}
@@ -53,10 +50,10 @@ block content
             ul.pager
              li.previous(class=(previousActivity ? undefined : "disabled"))
                +courseActivityLink(course,previousActivity)
-                 | &larr; Previous Activity
+                 | &larr; Vorherige Aktivität
              li.next(class=(nextActivity ? undefined : "disabled"),completion-blink="")
                +courseActivityLink(course,nextActivity)
-                 | Next Activity &rarr;
+                 | Nächste Aktivität &rarr;
             //p {{db}}
             //p {{currentActivity}}
             div(forum="#{activity.slug}")

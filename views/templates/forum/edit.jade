@@ -6,12 +6,12 @@ form.compose
 
     div.btn-toolbar(role="toolbar")
       div.btn-group
-        button.btn.btn-primary(ng-click="newPost.post()") <i class="fa fa-share"></i>&nbsp;Edit Post
+        button.btn.btn-primary(ng-click="newPost.post()") <i class="fa fa-share"></i>&nbsp;Beitrag editieren
       div.btn-group
-        button.btn.btn-danger(ng-confirm-click="Are you sure you want to cancel editing your post?", ng-click="cancel()") <i class="fa fa-times"></i>&nbsp;Cancel
+        button.btn.btn-danger(ng-confirm-click="Bist Du sicher, dass Du das Editieren abbrechen möchtest?", ng-click="cancel()") <i class="fa fa-times"></i>&nbsp;Abbrechen
       div.btn-group
         button.btn.btn-default(type="button", ng-click="anonymously=!anonymously")
           span(ng-if="!anonymously")
-            | <img src="https://secure.gravatar.com/avatar/{{gravatar}}.jpg?d=retro&s=20"> Reposting as {{user.current.name}}
+            | <img src="https://secure.gravatar.com/avatar/{{gravatar}}.jpg?d=retro&s=20"> Geschrieben als {{user.current.name}}
           span(ng-if="anonymously")
-            | <img src="https://secure.gravatar.com/avatar/?d=mm&s=20?f=y"> Reposting anonymously
+            | <img src="https://secure.gravatar.com/avatar/?d=mm&s=20?f=y"> Anonym geschrieben
