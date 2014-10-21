@@ -48,9 +48,9 @@ var jade = require('jade');
 var md = require("markdown");
 jade.filters.ximera = function(str){
     return str
-	.replace(/Ximera/g, '<a class="ximera" href="/">Ximera</a>')
-	.replace(/---/g, '&mdash;')
-	.replace(/--/g, '&ndash;')
+        .replace(/Ximera/g, '<a class="ximera" href="/">Ximera</a>')
+        .replace(/---/g, '&mdash;')
+        .replace(/--/g, '&ndash;')
     ;
 };
 jade.filters.markdown = function(str){
@@ -105,11 +105,11 @@ function addDatabaseMiddleware(req, res, next) {
     req.db = db;
 
     if ('user' in req)
-	res.locals.user = req.user;
+        res.locals.user = req.user;
     else {
-	res.locals.user = req.user = {};
+        res.locals.user = req.user = {};
     }
-    
+
     next();
 }
 
@@ -136,7 +136,7 @@ git.long(function (commit) {
     app.use('/components', express.static(path.join(__dirname, 'components')));
 
     app.locals({
-	versionPath: versionator.versionPath,
+        versionPath: versionator.versionPath,
     });
 
     console.log( versionator.versionPath('/template/test') );
@@ -145,13 +145,13 @@ git.long(function (commit) {
     app.use(express.logger('dev'));
 
     app.use(function(req, res, next) {
-	req.rawBody = '';
-	
-	req.on('data', function(chunk) { 
-	    req.rawBody += chunk;
-	});
-	
-	next();
+        req.rawBody = '';
+
+        req.on('data', function(chunk) {
+            req.rawBody += chunk;
+        });
+
+        next();
     });
 
     app.use(express.bodyParser());
@@ -161,10 +161,10 @@ git.long(function (commit) {
 
     app.use(express.cookieParser(cookieSecret));
     app.use(express.session({
-	secret: cookieSecret,
-	store: new MongoStore({
-	    db: mongoose.connections[0].db
-	})
+        secret: cookieSecret,
+        store: new MongoStore({
+            db: mongoose.connections[0].db
+        })
     }));
 
     app.use(passport.initialize());
@@ -244,11 +244,11 @@ git.long(function (commit) {
                                                       'https://www.googleapis.com/auth/userinfo.email'],
                                               clientID: process.env.GOOGLE_CLIENT_ID,
                                               successRedirect: '/just-logged-in',
-                				              failureRedirect: '/auth/google'}));
+                                                              failureRedirect: '/auth/google'}));
 
     // LTI login
     app.post('/lti', passport.authenticate('lti', { successRedirect: '/just-logged-in',
-						    failureRedirect: '/'}));
+                                                    failureRedirect: '/'}));
 
     app.get('/logout', function (req, res) {
         req.logout();
@@ -257,16 +257,16 @@ git.long(function (commit) {
 
     app.get('/just-logged-in', function (req, res) {
         if (req.user.lastUrlVisited && (req.user.lastUrlVisited != "/")) {
-	    console.log( "lastUrlVisited = ", req.user.lastUrlVisited);
+            console.log( "lastUrlVisited = ", req.user.lastUrlVisited);
             res.redirect(req.user.lastUrlVisited);
         }
         else {
             if (req.user.course) {
-		console.log( "course = ", req.user.course);
-		res.redirect( '/course/' + req.user.course +  '/course/' );
-	    } else {
-		res.redirect('/');
-	    }
+                console.log( "course = ", req.user.course);
+                res.redirect( '/course/' + req.user.course +  '/course/' );
+            } else {
+                res.redirect('/');
+            }
         }
     });
 
@@ -303,59 +303,24 @@ git.long(function (commit) {
         deployment: process.env.DEPLOYMENT
     });
 
-    // Setup blogs
-    var Poet = require('poet')
-    var poet = Poet(app, {
-        posts: './blog/',  // Directory of posts
-        postsPerPage: 5,     // Posts per page in pagination
-        readMoreLink: function (post) {
-            // readMoreLink is a function that
-            // takes the post object and formats an anchor
-            // to be used to append to a post's preview blurb
-            // and returns the anchor text string
-            return '<a href="' + post.url + '">Read More &raquo;</a>';
-        },
-        readMoreTag: '<!--more-->', // tag used to generate the preview. More in 'preview' section
+    // Start HTTP server for fully configured express App.
+    var server = http.createServer(app);
 
-        routes: {
-            '/blog/post/:post': 'blog/post',
-            '/blog/page/:page': 'blog/page',
-            '/blog/tag/:tag': 'blog/tag',
-            '/blog/category/:category': 'blog/category'
-        }
+    server.listen(app.get('port'), function(){
+        console.log('Express server listening on port ' + app.get('port'));
     });
 
-    app.get( '/blog', function ( req, res ) { res.render( 'blog/index' ); });
-
-    poet.init().then( function() {
-    // Start HTTP server for fully configured express App.
-        var server = http.createServer(app);
-
-        server.listen(app.get('port'), function(){
-	    console.log('Express server listening on port ' + app.get('port'));
-        });
-
-    var socket = io.listen(server); 
-
-    // Setup forum rooms
-    var forum = require('./routes/forum.js')(socket);
-    app.post('/forum/upvote/:post', forum.upvote);
-    app.post('/forum/flag/:post', forum.flag);
-    app.get(/\/forum\/(.+)/, forum.get);
-    app.post(/\/forum\/(.+)/, forum.post);
-    app.put('/forum/:post', forum.put);
-    app.delete('/forum/:post', forum.delete);
+    var socket = io.listen(server);
 
     socket.on('connection', function (client) {
-	// join to room and save the room name
-	client.on('join room', function (room) {
+        // join to room and save the room name
+        client.on('join room', function (room) {
             client.join(room);
-	});
+        });
 
-	client.on('send', function (data) {
+        client.on('send', function (data) {
             socket.sockets.emit('message', data);
-	});
+        });
     });
-});
 
 });
