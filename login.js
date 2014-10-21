@@ -1,4 +1,4 @@
-var GoogleStrategy = require('passport-google').Strategy
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
   , CourseraOAuthStrategy = require('./passport-coursera-oauth').Strategy
   , LtiStrategy = require('./passport-lti').Strategy
   , async = require('async')
@@ -20,11 +20,18 @@ module.exports.courseraStrategy = function (rootUrl) {
 
 module.exports.googleStrategy = function (rootUrl) {
     return new GoogleStrategy({
-        returnURL: rootUrl + '/auth/google/return',
-        realm: rootUrl,
-        passReqToCallback: true
-    }, function (req, identifier, profile, done) {
-        addUserAccount(req, 'googleOpenId', identifier, profile.displayName, profile.emails[0].value, null, done);
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL: 'http://ximera.geometry.de/oauth2callback',
+        passReqToCallback : true,
+        scope: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'],
+        // returnURL: rootUrl + '/auth/google/return',
+        // realm: rootUrl,
+        // passReqToCallback: true
+    },
+   function(req, accessToken, refreshToken, profile, done) {
+   // function (req, identifier, profile, done) {
+     addUserAccount(req, 'googleOpenId', profile.id, profile.displayName, profile.emails[0].value, null, done);
     });
 }
 
@@ -40,7 +47,7 @@ module.exports.ltiStrategy = function (rootUrl) {
 	    displayName = profile.lis_person_name_full;
 	var email = '';
 
-	if ('lis_person_contact_email_primary' in profile)	
+	if ('lis_person_contact_email_primary' in profile)
 	    email = profile.lis_person_contact_email_primary;
 
         addUserAccount(req, 'ltiId', identifier, displayName, email, profile.custom_ximera, done);

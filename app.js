@@ -239,9 +239,12 @@ git.long(function (commit) {
 
     // Google login.
     app.get('/auth/google', passport.authenticate('google'));
-    app.get('/auth/google/return',
-            passport.authenticate('google', { successRedirect: '/just-logged-in',
-				              failureRedirect: '/auth/google'}));
+    app.get('/oauth2callback',
+            passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile',
+                                                      'https://www.googleapis.com/auth/userinfo.email'],
+                                              clientID: process.env.GOOGLE_CLIENT_ID,
+                                              successRedirect: '/just-logged-in',
+                				              failureRedirect: '/auth/google'}));
 
     // LTI login
     app.post('/lti', passport.authenticate('lti', { successRedirect: '/just-logged-in',
