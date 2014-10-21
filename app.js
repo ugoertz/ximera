@@ -67,9 +67,9 @@ app.set('view engine', 'jade');
 // all environments
 app.set('port', process.env.PORT || 3000);
 
-var rootUrl = 'http://127.0.0.1:' + app.get('port');
+var rootUrl = 'http://ximera.geometry.de/';
 if (process.env.DEPLOYMENT === 'production') {
-    rootUrl = 'http://ximera.osu.edu';
+    rootUrl = 'http://ximera.geometry.de/';
 }
 
 // Common mongodb initializer for the app server and the activity service
