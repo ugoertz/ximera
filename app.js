@@ -303,14 +303,49 @@ git.long(function (commit) {
         deployment: process.env.DEPLOYMENT
     });
 
-    // Start HTTP server for fully configured express App.
-    var server = http.createServer(app);
 
-    server.listen(app.get('port'), function(){
-        console.log('Express server listening on port ' + app.get('port'));
+    // Setup blogs
+    var Poet = require('poet')
+    var poet = Poet(app, {
+        posts: './blog/',  // Directory of posts
+        postsPerPage: 5,     // Posts per page in pagination
+        readMoreLink: function (post) {
+            // readMoreLink is a function that
+            // takes the post object and formats an anchor
+            // to be used to append to a post's preview blurb
+            // and returns the anchor text string
+            return '<a href="' + post.url + '">Read More &raquo;</a>';
+        },
+        readMoreTag: '<!--more-->', // tag used to generate the preview. More in 'preview' section
+
+        routes: {
+            '/blog/post/:post': 'blog/post',
+            '/blog/page/:page': 'blog/page',
+            '/blog/tag/:tag': 'blog/tag',
+            '/blog/category/:category': 'blog/category'
+        }
     });
 
-    var socket = io.listen(server);
+    app.get( '/blog', function ( req, res ) { res.render( 'blog/index' ); });
+
+    poet.init().then( function() {
+    // Start HTTP server for fully configured express App.
+        var server = http.createServer(app);
+
+        server.listen(app.get('port'), function(){
+        console.log('Express server listening on port ' + app.get('port'));
+        });
+
+    var socket = io.listen(server); 
+
+    // Setup forum rooms
+    var forum = require('./routes/forum.js')(socket);
+    app.post('/forum/upvote/:post', forum.upvote);
+    app.post('/forum/flag/:post', forum.flag);
+    app.get(/\/forum\/(.+)/, forum.get);
+    app.post(/\/forum\/(.+)/, forum.post);
+    app.put('/forum/:post', forum.put);
+    app.delete('/forum/:post', forum.delete);
 
     socket.on('connection', function (client) {
         // join to room and save the room name
