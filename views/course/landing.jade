@@ -18,12 +18,14 @@ block content
      mixin breadcrumbs(['/course/',"/course/#{course.slug}/"],['Courses',course.name])
      .page-header
        h1 #{course.name}
-     p #{course.description}  Du kannst beginnen, 
-       a(href="/course/#{course.slug}/activity/#{course.normalizeSlug(course.activityTree[0].slug)}/") indem Du hier klickst.
+     p #{course.description}  Sie können beginnen, 
+       a(href="/course/#{course.slug}/activity/#{course.normalizeSlug(course.activityTree[0].slug)}/") indem Sie hier klicken.
        |  (Die Webseiten enthalten eine Menge JavaScript-Code, so dass es manchmal etwas länger dauert, bis alles dargestellt wird.)
 
+     p Wenn Sie einen Google-Account haben und sich anmelden, werden Ihre eingegebenen Lösungen gespeichert, und Sie können an der Stelle weitermachen, wo Sie aufgehört haben. Außerdem können Sie Fragen stellen/Kommentare abgeben. Natürlich können Sie die Materialien aber auch ohne Anmeldung benutzen.
+
      if false
-       p Bei Problemen schicke bitte eine Email an ulrich.goertz@uni-due.de
+       p Bei Problemen schicken Sie bitte eine Email an ulrich.goertz@uni-due.de
 
      if repo.feedback
        p Einige Aktivitäten konnten nicht korrekt kompiliert werden:
