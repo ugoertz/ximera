@@ -1,12 +1,12 @@
 div
   div.btn-group(ng-switch="",on='db.message',style="float: right; padding-left: 1em;")
-    button.btn.btn-success(ng-click='attemptAnswer()',ng-switch-when="correct",data-toggle="tooltip",data-placement="top",title="Correct answer!")
+    button.btn.btn-success(ng-click='attemptAnswer()',ng-switch-when="correct",data-toggle="tooltip",data-placement="top",title="Die Antwort ist richtig!")
       i.fa.fa-check
-      | &nbsp;Correct
-    button.btn.btn-danger(ng-click='attemptAnswer()',ng-switch-when="incorrect",data-toggle="tooltip",data-placement="top",title="Incorrect.  Try again!")
+      | &nbsp;Richtig
+    button.btn.btn-danger(ng-click='attemptAnswer()',ng-switch-when="incorrect",data-toggle="tooltip",data-placement="top",title="Falsch. Probieren Sie es noch einmal!")
       i.fa.fa-times
-      | &nbsp;Try again
-    button.btn.btn-primary(ng-click='attemptAnswer()',ng-switch-default,data-toggle="tooltip",data-placement="top",title="Click to check your answer.")
+      | &nbsp;Nochmal versuchen
+    button.btn.btn-primary(ng-click='attemptAnswer()',ng-switch-default,data-toggle="tooltip",data-placement="top",title="Klicken Sie, um die Antwort zu überprüfen.")
       i.fa.fa-question
-      | &nbsp;Check work
+      | &nbsp;Antwort überprüfen
   div(math-matrix="", matrix="db.matrix", name="A")

@@ -29,9 +29,9 @@ table
 
     td(rowspan="{{matrix.length}}",ng-if="$first",style="vertical-align: center;")
       div.btn-group-vertical
-        button.btn.btn-sm.btn-default(type="button",ng-click='addRow()',title="Add row")
+        button.btn.btn-sm.btn-default(type="button",ng-click='addRow()',title="Zeile hinzufügen")
           i.fa.fa-plus
-        button.btn.btn-sm.btn-default(type="button",ng-click='removeRow()',ng-disabled="matrix.length <= 1",title="Remove row")
+        button.btn.btn-sm.btn-default(type="button",ng-click='removeRow()',ng-disabled="matrix.length <= 1",title="Zeile löschen")
           i.fa.fa-minus
 
   // Need two rows to avoid trouble with borders
@@ -39,8 +39,8 @@ table
   tr
     td(colspan='{{matrix[0].length + 2}}',style="text-align:center;")
       div.btn-group
-        button.btn.btn-sm.btn-default(type="button",ng-click='addColumn()',title="Add column")
+        button.btn.btn-sm.btn-default(type="button",ng-click='addColumn()',title="Spalte hinzufügen")
           i.fa.fa-plus
-        button.btn.btn-sm.btn-default(type="button",ng-click='removeColumn()',ng-disabled="matrix[0].length <= 1",title="Remove column")
+        button.btn.btn-sm.btn-default(type="button",ng-click='removeColumn()',ng-disabled="matrix[0].length <= 1",title="Spalte löschen")
           i.fa.fa-minus
 

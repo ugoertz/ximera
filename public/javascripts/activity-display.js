@@ -125,7 +125,7 @@ define(['angular', 'jquery', 'underscore', 'algebra/math-function', 'algebra/par
         return {
             restrict: 'A',
             scope: {},
-            template: '<div><button class="btn btn-info pull-right" ng-show="db.next" ng-click="showHint()">Show Hint</button></div>',
+            template: '<div><button class="btn btn-info pull-right" ng-show="db.next" ng-click="showHint()">Zeige Hinweis</button></div>',
             replace: true,
             transclude: true,
             link: function($scope, element, attrs, controller, transclude) {
