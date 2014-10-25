@@ -57,7 +57,7 @@ define(['angular', 'jquery', 'underscore', "pagedown-converter", "pagedown-sanit
 
 		var toolbar = $('#wmd-button-row' + $scope.wmdName, form);
 		//toolbar.append( $('<div class="btn-group"><button class="btn btn-primary"><i class="fa fa-share"></i>&nbsp;Submit to Peers</button><button class="btn btn-warning"><i class="fa fa-thumbs-up"></i>&nbsp;Review Peers</button></div>') );		
-		var button = '<button class="btn btn-info" ng-click="db.viewSolution = true;" ng-hide="db.viewSolution"><i class="fa fa-eye"></i>&nbsp;View model solution</button><button class="btn btn-info" ng-click="db.viewSolution = false;" ng-show="db.viewSolution"><i class="fa fa-eye-slash"></i>&nbsp;Hide model solution</button>';
+		var button = '<button class="btn btn-info" ng-click="db.viewSolution = true;" ng-hide="db.viewSolution"><i class="fa fa-eye"></i>&nbsp;Zeige Lösungsvorschlag</button><button class="btn btn-info" ng-click="db.viewSolution = false;" ng-show="db.viewSolution"><i class="fa fa-eye-slash"></i>&nbsp;Verstecke Lösungsvorschlag</button>';
 		toolbar.append( $compile(button)($scope) );
 
 		// update view from model
