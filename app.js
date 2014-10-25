@@ -357,5 +357,5 @@ git.long(function (commit) {
             socket.sockets.emit('message', data);
         });
     });
-
+    });
 });
