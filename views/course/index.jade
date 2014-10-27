@@ -9,9 +9,9 @@ mixin course(course)
 
 block content
   .container
-     mixin breadcrumbs(['/course/'],['Courses'])
+     mixin breadcrumbs(['/course/'],['Kurse'])
      .page-header
-       h1 Courses
+       h1Kurse
      - for course in courses
        mixin course(course)
        hr
